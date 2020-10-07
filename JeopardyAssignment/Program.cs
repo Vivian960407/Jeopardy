@@ -17,7 +17,7 @@ namespace Jeopardy
 
                 if (Add_Questions.Supported(game_Season) == true)
                 {
-                    bool exitProgram = Questions.FromMain(game_Season);
+                    bool exitProgram = Add_Questions.Supported(game_Season);
                     if (exitProgram)
                     {
                         return;
