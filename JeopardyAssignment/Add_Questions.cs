@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 
@@ -8,6 +9,7 @@ namespace Jeopardy
     {
         private static void Main(string[] args)
         {
+            int i;
             DataTable datatable = new DataTable();
             Console.Write("What season do you want to play?");
             string Choosen_Season = Console.ReadLine().ToLower();
@@ -26,17 +28,17 @@ namespace Jeopardy
                 datatable.Rows.Add(datarow);
             }
 
-            foreach (DataRow row in datatable.Rows)
+            foreach (DataRow row in datatable.Rows) 
             {
                 Console.WriteLine();
 
                 foreach (DataColumn column in datatable.Columns)
                 {
-                    //check what columns you need
                     if (column.ColumnName == "value" ||
                         column.ColumnName == "category" ||
                         column.ColumnName == "question" ||
-                        column.ColumnName == "answer")
+                        column.ColumnName == "answer" ||
+                        column.ColumnName == "air_date")
                     {
                         Console.Write(column.ColumnName);
                         Console.Write(" ");
@@ -44,6 +46,8 @@ namespace Jeopardy
                     }
                 }
             }
+
+            
             Console.ReadLine();
         }
 
