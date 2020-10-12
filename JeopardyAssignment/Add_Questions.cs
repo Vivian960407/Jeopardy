@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Jeopardy
 {
@@ -9,11 +12,13 @@ namespace Jeopardy
     {
         private static void Main(string[] args)
         {
-            int i;
             DataTable datatable = new DataTable();
-            Console.Write("What season do you want to play?");
+            Console.Write("What season do you want to play? ");
             string Choosen_Season = Console.ReadLine().ToLower();
-            StreamReader streamreader = new StreamReader(@"C:\Users\marcu\source\repos\JeopardyAssignment\jeopardy_clue_dataset-master\" + Choosen_Season + ".tsv");
+
+            string startupPath = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName);
+            StreamReader streamreader = new StreamReader(startupPath + @"\jeopardy_clue_dataset\" + Choosen_Season + ".tsv");
+
             char[] delimiter = new char[] { '\t' };
             string[] columnheaders = streamreader.ReadLine().Split(delimiter);
             foreach (string columnheader in columnheaders)
@@ -28,26 +33,74 @@ namespace Jeopardy
                 datatable.Rows.Add(datarow);
             }
 
-            foreach (DataRow row in datatable.Rows) 
+            var randomRowIndex = 5;
+            var randomRow = datatable.Rows[randomRowIndex];
+            for (int i = 0; i < datatable.Columns.Count; i++)
             {
-                Console.WriteLine();
+                if (datatable.Columns[i].ToString() == "answer")
+                    Console.WriteLine(datatable.Columns[i].ToString() + ": " + randomRow[i]);
 
-                foreach (DataColumn column in datatable.Columns)
+                if (datatable.Columns[i].ToString() == "question")
+                    Console.WriteLine(datatable.Columns[i].ToString() + ": " + randomRow[i]);
+            }
+            //------------------------------------------------------------------------------------------------------
+            //var filePath = startupPath + @"\jeopardy_clue_dataset\" + Choosen_Season + ".tsv";
+            //var question_input = File.ReadAllLines(filePath);
+
+            Console.WriteLine("What´s the question to this answer?");
+            var inputQuestion = Console.ReadLine();
+
+            for (int i = 0; i < datatable.Columns.Count; i++)
+            {
+                if (datatable.Columns[i].ToString() == "question")
                 {
-                    if (column.ColumnName == "value" ||
-                        column.ColumnName == "category" ||
-                        column.ColumnName == "question" ||
-                        column.ColumnName == "answer" ||
-                        column.ColumnName == "air_date")
+                    //if (inputQuestion.Equals(Convert.ToString(datatable.Columns[i].ToString() + ": " + randomRow[i]), StringComparison.OrdinalIgnoreCase))
+                    if (inputQuestion.Equals(randomRow[i].ToString(), StringComparison.OrdinalIgnoreCase))
                     {
-                        Console.Write(column.ColumnName);
-                        Console.Write(" ");
-                        Console.WriteLine(row[column]);
+
+                        Console.WriteLine("Correct");
                     }
+                    else
+                    {
+                        Console.WriteLine("Wrong");
+                    }
+                    break;
                 }
+                
             }
 
             
+
+            //------------------------------------------------------------------------------------------------------
+
+            //------------------------------------------------------------------------------------------------------
+            //string[] words = input_question.Split();
+            //char delimiter_question = '\t';
+            //IEnumerable<string> matchingLines = File.ReadLines(startupPath + @"\jeopardy_clue_dataset\" + Choosen_Season + ".tsv")
+            //    .Where(line => words.Intersect(line.Split(delimiter_question)).Any())
+            //    .ToList();
+
+
+            //foreach (DataRow row in datatable.Rows) 
+            //{
+            //    Console.WriteLine();
+
+            //    foreach (DataColumn column in datatable.Columns)
+            //    {
+            //        if (column.ColumnName == "value" ||
+            //            column.ColumnName == "category" ||
+            //            column.ColumnName == "question" ||
+            //            column.ColumnName == "answer" ||
+            //            column.ColumnName == "air_date")
+            //        {
+            //            Console.Write(column.ColumnName);
+            //            Console.Write(" ");
+            //            Console.WriteLine(row[column]);
+            //        }
+            //    }
+            //}
+            //------------------------------------------------------------------------------------------------------
+
             Console.ReadLine();
         }
 
