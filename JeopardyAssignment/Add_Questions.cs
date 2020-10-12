@@ -102,6 +102,10 @@ namespace Jeopardy
             //------------------------------------------------------------------------------------------------------
 
             Console.ReadLine();
+
+            Console.WriteLine("Testing");
+            Console.WriteLine("Pull");
+            Console.WriteLine("Function");
         }
 
     }
