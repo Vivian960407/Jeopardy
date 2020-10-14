@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace JeopardyAssignment
@@ -9,7 +8,7 @@ namespace JeopardyAssignment
     public class Game_Question
     {
         public List<Question> Questions = new List<Question>();
-       
+
         //FileReader
         public void QuestionMaker()
         {
@@ -19,16 +18,18 @@ namespace JeopardyAssignment
 
             using (StreamReader file = new StreamReader("questionMaster.txt", true))
             {
-                while ((temp = file.ReadLine()) != null )
+                while ((temp = file.ReadLine()) != null)
                 {
                     splited_line = temp.Split(tab);
                     if (splited_line[0] == "1" && splited_line.Length == 9)
                     {
-                        Questions.Add(new Question{
+                        Questions.Add(new Question
+                        {
                             value = splited_line[1],
                             category = splited_line[3],
                             question = splited_line[5],
-                            answer = splited_line[6]});
+                            answer = splited_line[6]
+                        });
                     }
                     else
                         continue;
@@ -45,12 +46,12 @@ namespace JeopardyAssignment
 
 
         //Följande metod är endast till test-körning
-      /*  public void Qprinter()
-        {
-            foreach(var x in Questions)
-            {
-                Console.WriteLine(x);
-            }
-        }*/
+        //public void Qprinter()
+        //{
+        //    foreach (var x in Questions)
+        //    {
+        //        Console.WriteLine(x);
+        //    }
+        //}
     }
 };
