@@ -54,6 +54,7 @@ namespace JeopardyAssignment
 
             Points += pointsWon;
             ClearBet();
+            QuestionsCompleted++;
             return;
         }
 
