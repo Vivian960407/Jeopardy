@@ -11,18 +11,30 @@ namespace JeopardyAssignment
         // Game logiken ska byggas här
         // Metoder såsom Menu/Start eller poäng beräkningar ska kodas här
         //UI hanteras här för det mesta 
+
+
         Player my_player = new Player();
-        Game_Question game = new Game_Question();
+        Game_Question my_question = new Game_Question();
+
+        public void start()
+        {
+            my_question.QuestionMaker();
+            current_question();
+
+        }
+
 
         public void current_question()
         {
-            //Hur svår fråga vill du svara på?
-            int value = 0; //läsa in den valda poängen
-            int index = game.Random_Q_Generator(value);
+            Console.WriteLine("How many points la la la?");
+            int value = 0;
+            //Console.WriteLine("let's say 100");
+            value = Convert.ToInt32(Console.ReadLine());
+            int index = my_question.Random_Q_Generator(value);
 
-            string played_value = game.answer_checker(index);
+            string played_value = my_question.answer_checker(index);
             my_player.WinQuestion(played_value);
-            game.Question_Remover(index);
+            my_question.Question_Remover(index);
 
         }
 

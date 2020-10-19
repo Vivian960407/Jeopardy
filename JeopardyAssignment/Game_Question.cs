@@ -73,6 +73,8 @@ namespace JeopardyAssignment
             return index;
         }
 
+
+
         public void Question_Remover(int index)
         {
             Questions.RemoveAt(index);

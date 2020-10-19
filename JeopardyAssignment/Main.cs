@@ -8,11 +8,15 @@ namespace JeopardyAssignment
         {
             //WelcomeMessage.Welcome();
 
+            var game = new Game();
+            game.start();
 
-            var Player1 = new Player();
-            Player1.ShowStatistics();
-            var game = new Game_Question();
-            game.QuestionMaker();
+
+            // var Player1 = new Player();
+            // Player1.ShowStatistics();
+
+
+            /*
             bool gameLoop = true;
 
             while (gameLoop)
@@ -22,10 +26,8 @@ namespace JeopardyAssignment
                     game.show_One_Question();
                     Player1.ShowStatistics();
                 }
-            }
+            }*/
 
-
-            game.show_one_question();
 
             //Följande rad är endast för test-körning av koden
             //game.Qprinter();
