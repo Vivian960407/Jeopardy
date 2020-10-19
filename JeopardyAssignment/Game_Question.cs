@@ -39,6 +39,12 @@ namespace JeopardyAssignment
             }
         }
 
+
+        public void show_one_question()
+        {
+            Console.WriteLine(Questions[5].value);
+        }
+
         //Dessa metoder ska förklaras senare
         public void Question_Sorter() { }
 
