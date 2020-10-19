@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 
 namespace JeopardyAssignment
@@ -10,7 +11,7 @@ namespace JeopardyAssignment
         public List<Question> Questions = new List<Question>();
 
         //FileReader
-        public void QuestionMaker()
+        public  void QuestionMaker()
         {
             char tab = Convert.ToChar(9);
             string temp;
@@ -39,12 +40,24 @@ namespace JeopardyAssignment
             }
         }
 
-
-        public void show_one_question()
+        public void show_One_Question()
         {
-            Console.WriteLine(Questions[5].value);
-        }
+            Console.WriteLine("This question is worth " + Questions[5].value + " points");
+            Console.WriteLine(Questions[5].question);
+            Console.WriteLine("Input what you think the question for this answer is: ");
+            string inputQuestion = Console.ReadLine();
 
+            if (Questions[5].answer.Contains(inputQuestion))
+            {
+                Console.WriteLine(inputQuestion + " is correct!");
+                Player.WinQuestion += Questions[5].value;
+                
+            }
+            else
+            {
+                Console.WriteLine(inputQuestion + " is wrong! The correct answer is " + Questions[5].answer);
+            }
+        }
         //Dessa metoder ska förklaras senare
         public void Question_Sorter() 
         {
@@ -91,6 +104,7 @@ namespace JeopardyAssignment
             Questions.RemoveAt(index);
         }
 
+       
 
         //Följande metod är endast till test-körning
         //public void Qprinter()

@@ -18,7 +18,7 @@ namespace JeopardyAssignment
    
     public class Player
     {
-        public int QuestionsCompleted { get; set; } = 1;
+        public static int QuestionsCompleted { get; set; } = 1;
         public int Points { get; set; } = 100;
         public int Bet { get; set; }
 
@@ -39,30 +39,17 @@ namespace JeopardyAssignment
             ClearBet();
         }
 
-        public void WinQuestion(bool Daily_Double)
+        public static void WinQuestion(string value)
         {
-            int pointsWon;
-
-            if (Daily_Double)
-            {
-                pointsWon = Bet * 3;
-            }
-            else
-            {
-                pointsWon = Bet * 2;
-            }
-
-            Points += pointsWon;
-            ClearBet();
             QuestionsCompleted++;
             return;
         }
-
         public void ShowStatistics()
         {
-            Console.WriteLine("Bet: {0}", Bet);
+            //Console.WriteLine("Bet: {0}", Bet);
             Console.WriteLine("Points: {0}", Points);
-            Console.WriteLine("Questions completed: {0}", QuestionsCompleted);
+            Console.WriteLine("Questions completed: {0}", QuestionsCompleted -1);
         }
+
     }
 }
