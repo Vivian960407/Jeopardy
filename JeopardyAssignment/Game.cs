@@ -11,6 +11,20 @@ namespace JeopardyAssignment
         // Game logiken ska byggas här
         // Metoder såsom Menu/Start eller poäng beräkningar ska kodas här
         //UI hanteras här för det mesta 
+        Player my_player = new Player();
+        Game_Question game = new Game_Question();
+
+        public void current_question()
+        {
+            //Hur svår fråga vill du svara på?
+            int value = 0; //läsa in den valda poängen
+            int index = game.Random_Q_Generator(value);
+
+            string played_value = game.answer_checker(index);
+            my_player.WinQuestion(played_value);
+            game.Question_Remover(index);
+
+        }
 
 
     }
@@ -39,11 +53,13 @@ namespace JeopardyAssignment
             ClearBet();
         }
 
-        public static void WinQuestion(string value)
+        public void WinQuestion(string value)
         {
+            Points += Int32.Parse(value);
             QuestionsCompleted++;
             return;
         }
+
         public void ShowStatistics()
         {
             //Console.WriteLine("Bet: {0}", Bet);

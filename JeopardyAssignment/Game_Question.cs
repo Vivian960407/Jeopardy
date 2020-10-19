@@ -78,24 +78,28 @@ namespace JeopardyAssignment
             Questions.RemoveAt(index);
         }
 
-        public void show_One_Question()
+        public string answer_checker(int index)
         {
-            Console.WriteLine("This question is worth " + Questions[5].value + " points");
-            Console.WriteLine(Questions[5].question);
             Console.WriteLine("Input what you think the question for this answer is: ");
             string inputQuestion = Console.ReadLine();
 
-            if (Questions[5].answer.Contains(inputQuestion))
+            if (Questions[index].answer.Contains(inputQuestion))
             {
                 Console.WriteLine(inputQuestion + " is correct!");
-                //Player.WinQuestion += Questions[5].value;
-                
+                return Questions[index].value;
+
             }
             else
             {
-                Console.WriteLine(inputQuestion + " is wrong! The correct answer is " + Questions[5].answer);
+                Console.WriteLine(inputQuestion + " is wrong! The correct answer is " + Questions[index].answer);
+                int temp = -1 * Int32.Parse(Questions[index].value);
+                return Convert.ToString(temp);
             }
+
+           
         }
+
+
         //Dessa metoder ska förklaras senare
         public void Question_Sorter() { }
 
