@@ -50,7 +50,7 @@ namespace JeopardyAssignment
             if (Questions[5].answer.Contains(inputQuestion))
             {
                 Console.WriteLine(inputQuestion + " is correct!");
-                Player.WinQuestion += Questions[5].value;
+                //Player.WinQuestion += Questions[5].value;
                 
             }
             else
@@ -59,50 +59,9 @@ namespace JeopardyAssignment
             }
         }
         //Dessa metoder ska förklaras senare
-        public void Question_Sorter() 
-        {
-            
-        }
+        public void Question_Sorter() { }
 
-
-        public int Random_Generator()
-        {
-            Random rand = new Random();
-            int index = rand.Next(0, Questions.Count);
-            return index;
-        }
-
-        public int Random_Q_Generator(int value)
-        {
-            bool control = true;
-            int index = 0;
-            do
-            {
-                int j = Random_Generator();
-                for (int i = 0; i < Questions.Count; i++)
-                {
-                    if (i != j)
-                        continue;
-                    else
-                    {
-                        if (Questions[i].value == Convert.ToString(value))
-                        {
-                            index = j;
-                            control = false;
-                        }
-                        else
-                            break;
-                    }
-                }
-            } while (control);
-            Console.WriteLine("The question you picked is from {0} category. \n {1}", Questions[index].category, Questions[index].question);
-            return index;
-        }
-
-        public void Question_Remover(int index)
-        {
-            Questions.RemoveAt(index);
-        }
+        public void Random_Q_Generator() { }
 
        
 
