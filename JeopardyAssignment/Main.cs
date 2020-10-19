@@ -25,6 +25,8 @@ namespace JeopardyAssignment
             }
 
 
+            game.show_one_question();
+
             //Följande rad är endast för test-körning av koden
             //game.Qprinter();
 
