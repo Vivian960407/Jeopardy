@@ -16,8 +16,6 @@ namespace JeopardyAssignment
             //Följande rad är endast för test-körning av koden
             //game.Qprinter();
 
-            
-
             Console.ReadKey();
             /* DataTable datatable = new DataTable();
              Console.Write("What season do you want to play? ");
