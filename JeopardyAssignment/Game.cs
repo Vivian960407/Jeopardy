@@ -19,26 +19,43 @@ namespace JeopardyAssignment
         public void start()
         {
             my_question.QuestionMaker();
-            current_question();
+            my_question.Question_Sorter();
+            Questionnaire();
 
         }
 
 
-        public void current_question()
+        public void Questionnaire()
         {
-            Console.WriteLine("How many points la la la?");
-            int value = 0;
-            //Console.WriteLine("let's say 100");
-            value = Convert.ToInt32(Console.ReadLine());
-            int index = my_question.Random_Q_Generator(value);
+            Console.WriteLine("Pick a category by entering its number, no parenthesis needed: ");
+            my_question.List_Categories();
+            int choice = 0;
+            while (true)
+            {
+                try
+                {
+                    choice = Int32.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please use correct format");
+                }
+                if (choice < 1 || choice > 5)
+                {
+                    Console.WriteLine("Please pick only from the list");
+                }
+                else
+                    break;
+                
+            }
+            string category = my_question.Category(choice);
+            int index = my_question.Question_Finder(category);
 
             string played_value = my_question.answer_checker(index);
             my_player.WinQuestion(played_value);
             my_question.Question_Remover(index);
 
         }
-
-
     }
 
    

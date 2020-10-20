@@ -11,27 +11,6 @@ namespace JeopardyAssignment
             var game = new Game();
             game.start();
 
-
-            // var Player1 = new Player();
-            // Player1.ShowStatistics();
-
-
-            /*
-            bool gameLoop = true;
-
-            while (gameLoop)
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    game.show_One_Question();
-                    Player1.ShowStatistics();
-                }
-            }*/
-
-
-            //Följande rad är endast för test-körning av koden
-            //game.Qprinter();
-
             Console.ReadKey();
            
              //------------------------------------------------------------------------------------------------------

@@ -9,9 +9,10 @@ namespace JeopardyAssignment
     public class Game_Question
     {
         public List<Question> Questions = new List<Question>();
+        public List<Question> random_question = new List<Question>();
 
         //FileReader
-        public  void QuestionMaker()
+        public void QuestionMaker()
         {
             char tab = Convert.ToChar(9);
             string temp;
@@ -28,8 +29,8 @@ namespace JeopardyAssignment
                         {
                             value = splited_line[1],
                             category = splited_line[3],
-                            question = splited_line[5],
-                            answer = splited_line[6]
+                            question = splited_line[5].ToLower(),
+                            answer = splited_line[6].ToLower()
                         });
                     }
                     else
@@ -39,45 +40,56 @@ namespace JeopardyAssignment
                 file.Close();
             }
         }
-        public int Random_Generator()
+
+        public int Random_Generator(int count)
         {
             Random rand = new Random();
-            int index = rand.Next(0, Questions.Count);
+            int index = rand.Next(0, count);
             return index;
         }
 
-        public int Random_Q_Generator(int value)
+        public int Question_Finder(string category)
         {
-            bool control = true;
             int index = 0;
-            do
+            for (int i = 0; i < random_question.Count; i++)
             {
-                int j = Random_Generator();
-                for (int i = 0; i < Questions.Count; i++)
+                if (random_question[i].category != category)
+                    continue;
+                else
                 {
-                    if (i != j)
-                        continue;
-                    else
-                    {
-                        if (Questions[i].value == Convert.ToString(value))
-                        {
-                            index = j;
-                            control = false;
-                        }
-                        else
-                            break;
-                    }
+                    index = i;
+                    break;
                 }
-            } while (control);
-            Console.WriteLine("The question you picked is from {0} category. \n {1}", Questions[index].category, Questions[index].question);
+            }
+            Console.WriteLine("The question you picked from {0} category: \n {1}", random_question[index].category, random_question[index].question);
             return index;
         }
 
+        public void List_Categories()
+        {
+            Console.WriteLine("(1){0}  (2){1}  (3){2}  (4){3}  (5){4}", random_question[0].category, random_question[5].category, random_question[10].category, random_question[15].category, random_question[20].category);
+        }
 
+        public string Category(int choice)
+        {
+            switch (choice)
+            {
+                case 1:
+                    return random_question[0].category;
+                case 2:
+                    return random_question[5].category;
+                case 3:
+                    return random_question[10].category;
+                case 4:
+                    return random_question[15].category;
+                default:
+                    return random_question[20].category;
+            }
+        }
 
         public void Question_Remover(int index)
         {
-            Questions.RemoveAt(index);
+            random_question.RemoveAt(index);
         }
 
         public string answer_checker(int index)
@@ -85,16 +97,16 @@ namespace JeopardyAssignment
             Console.WriteLine("Input what you think the question for this answer is: ");
             string inputQuestion = Console.ReadLine();
 
-            if (Questions[index].answer.Contains(inputQuestion))
+            if (random_question[index].answer.Contains(inputQuestion))
             {
                 Console.WriteLine(inputQuestion + " is correct!");
-                return Questions[index].value;
+                return random_question[index].value;
 
             }
             else
             {
-                Console.WriteLine(inputQuestion + " is wrong! The correct answer is " + Questions[index].answer);
-                int temp = -1 * Int32.Parse(Questions[index].value);
+                Console.WriteLine(inputQuestion + " is wrong! The correct answer is " + random_question[index].answer);
+                int temp = -1 * Int32.Parse(random_question[index].value);
                 return Convert.ToString(temp);
             }
 
@@ -102,20 +114,78 @@ namespace JeopardyAssignment
         }
 
 
-        //Dessa metoder ska förklaras senare
-        public void Question_Sorter() { }
+       //The following method picks 5 categories randomly fore every new game
+        public void Question_Sorter() 
+        {
+            int round_count = 0;
+            while (round_count < 5)
+            {
+                while (true)
+                {
+                    List<Question> question = new List<Question>();
+                    int index_rand = Random_Generator(Questions.Count);
+                    for (int i = 0; i < Questions.Count; i++)
+                    {
+                        if (i != index_rand)
+                            continue;
+                        else
+                        {
+                            foreach (var x in Questions)
+                            {
+                                if (x.category == Questions[index_rand].category)
+                                {
+                                    question.Add(x);
+                                }
+                            }
+                        }
 
-        public void Random_Q_Generator() { }
+                    }
 
-       
+                    //Some categories contain less than 5 questions
+                    if (question.Count != 5)
+                        continue;
+                    else
+                    {
+                        //sort the temporary random list
+                        for (int i = 0; i < question.Count; i++)
+                        {
+                            Question temp;
+                            for (int j = 0; j < question.Count; j++)
+                            {
+                                if ((Convert.ToInt32(question[i].value)) < (Convert.ToInt32(question[j].value)))
+                                {
+                                    temp = question[i];
+                                    question[i] = question[j];
+                                    question[j] = temp;
+                                }
+                            }
+                        }
+
+                        //remove the items from the origin list
+                        for (int i = 0; i < Questions.Count; i++)
+                        {
+                            if (Questions[i].category != question[0].category)
+                                continue;
+                            else
+                                Questions.RemoveAt(i);
+                        }
+
+                        random_question.AddRange(question);
+                        break;
+                    }
+                }
+                round_count++;
+            }
+        }
+
 
         //Följande metod är endast till test-körning
-        //public void Qprinter()
-        //{
-        //    foreach (var x in Questions)
-        //    {
-        //        Console.WriteLine(x);
-        //    }
-        //}
+      /*  public void Qprinter()
+        {
+            foreach (var x in random_question)
+            {
+                Console.WriteLine(x);
+            }
+        }*/
     }
 };
