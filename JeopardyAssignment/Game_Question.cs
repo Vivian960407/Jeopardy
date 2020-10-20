@@ -5,7 +5,6 @@ using System.IO;
 
 namespace JeopardyAssignment
 {
-
     public class Game_Question
     {
         public List<Question> Questions = new List<Question>();
@@ -50,18 +49,31 @@ namespace JeopardyAssignment
 
         public int Question_Finder(string category)
         {
-            int index = 0;
+            int index = -1;
             for (int i = 0; i < random_question.Count; i++)
             {
                 if (random_question[i].category != category)
                     continue;
                 else
                 {
-                    index = i;
-                    break;
+                    if (random_question[i].accessibility == Q.played)
+                        continue;
+                    else
+                    {
+                        index = i;
+                        break;
+                    }
                 }
             }
-            Console.WriteLine("The question you picked from {0} category: \n {1}", random_question[index].category, random_question[index].question);
+
+            if (index == -1)
+                Console.WriteLine("There are no more available questions in this category!");
+            else
+            {
+                Console.WriteLine("The question you picked from {0} category: \n {1}", random_question[index].category, random_question[index].question);
+                random_question[index].accessibility_controller();
+            }
+
             return index;
         }
 
@@ -87,6 +99,7 @@ namespace JeopardyAssignment
             }
         }
 
+        //Probably will get removed
         public void Question_Remover(int index)
         {
             random_question.RemoveAt(index);

@@ -20,10 +20,11 @@ namespace JeopardyAssignment
         {
             my_question.QuestionMaker();
             my_question.Question_Sorter();
-            Questionnaire();
-
+            while (true)
+            {
+                Questionnaire();
+            }
         }
-
 
         public void Questionnaire()
         {
@@ -50,11 +51,21 @@ namespace JeopardyAssignment
             }
             string category = my_question.Category(choice);
             int index = my_question.Question_Finder(category);
+            if (index == -1)
+                return;
+            else 
+            {
+                string played_value = my_question.answer_checker(index);
 
-            string played_value = my_question.answer_checker(index);
-            my_player.WinQuestion(played_value);
-            my_question.Question_Remover(index);
-
+                if (my_player.Bet != 0 && (Int32.Parse(played_value)) !< 0)
+                    my_player.ReturnBet();
+                if (my_player.Bet != 0 && (Int32.Parse(played_value)) !> 0)
+                {
+                    my_player.ClearBet();
+                }
+                else
+                    my_player.WinQuestion(played_value);
+            }
         }
     }
 
