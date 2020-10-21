@@ -26,7 +26,7 @@ namespace JeopardyAssignment
                     {
                         value = splited_line[1],
                         category = splited_line[3],
-                        question = splited_line[5].ToLower(),
+                        question = splited_line[5],
                         answer = splited_line[6].ToLower()
                     });
                 }
