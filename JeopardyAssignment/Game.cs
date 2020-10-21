@@ -77,13 +77,13 @@ namespace JeopardyAssignment
             Console.WriteLine("Last question, you are now allowed to bet. Enter your bet: ");
             Console.WriteLine("-----------------------------------------------------------");
             int bet = Convert.ToInt32(Console.ReadLine());
-            my_player.AddBet(bet);
             if (bet > my_player.Points)
             {
                 Console.WriteLine("You can´t bet more than what you have, please bet again");
                 Console.WriteLine("Place your bet");
                 Last_Questionnaire();
             }
+            my_player.AddBet(bet);
             Console.WriteLine("Choose category by entering a number between 1 - 5");
             my_question.List_Categories();
             int choice = 0;
@@ -140,7 +140,10 @@ namespace JeopardyAssignment
             Bet += bet;
             Points -= bet;
         }
-
+        public void ClearPoints()
+        {
+            Points = 0;
+        }
         public void ClearBet()
         {
             Bet = 0;
@@ -150,6 +153,10 @@ namespace JeopardyAssignment
         {
             Points += Bet;
             ClearBet();
+        }
+        public void ClearQuestionsCompleted()
+        {
+            QuestionsCompleted = 0;
         }
 
         public void WinQuestion(string value)
@@ -164,12 +171,49 @@ namespace JeopardyAssignment
         public void ShowEndResult()
         {
             Console.WriteLine("Thanks for playing, yor final score is: {0}", Points);
+            ClearQuestionsCompleted();
         }
         public void ShowStatistics()
         {
             Console.WriteLine("Your points: {0}", Points);
             Console.WriteLine("Questions answered {0} of 6", QuestionsCompleted);
         }
+    }
+    public class Menu
+    {
+        
+        public void Menu_Switch()
+        {
+            Console.WriteLine("Menu. Choose a number corresponding what you want to do from this list:");
+            Console.WriteLine("1. Start a new game\n2. Exit game");
 
+            int menuInput = Convert.ToInt32(Console.ReadLine());
+
+            switch (menuInput)
+            {
+                case 1:
+                    Start_New_Game();
+                    break;
+                case 2:
+                    Exit_Game();
+                    break;
+                default:
+                    Console.WriteLine("Can only choose 1 or 2");
+                    Menu_Switch();
+                    break;
+            }
+        }
+        public void Start_New_Game()
+        {
+            Console.Clear();
+            var game = new Game();
+            game.Start();
+        }
+        public void Exit_Game()
+        {
+            Console.WriteLine("Thank you for playing!");
+            Console.WriteLine("Press any key to close application");
+            Environment.Exit(0);
+        }
     }
 }
