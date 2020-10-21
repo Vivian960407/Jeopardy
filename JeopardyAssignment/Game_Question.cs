@@ -33,7 +33,6 @@ namespace JeopardyAssignment
                 else
                     continue;
             }
-
             file.Close();
         }
 
@@ -122,7 +121,9 @@ namespace JeopardyAssignment
             }
             else
             {
+                Console.WriteLine("---------------------------------------------------------------------");
                 Console.WriteLine(inputQuestion + " is wrong! The correct answer is " + random_question[index].answer);
+                Console.WriteLine("---------------------------------------------------------------------");
                 int temp = -1 * Int32.Parse(random_question[index].value);
                 return Convert.ToString(temp);
             }
