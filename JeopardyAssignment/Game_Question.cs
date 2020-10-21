@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 
 namespace JeopardyAssignment
@@ -17,27 +16,25 @@ namespace JeopardyAssignment
             string temp;
             string[] splited_line;
 
-            using (StreamReader file = new StreamReader("questionMaster.txt", true))
+            using StreamReader file = new StreamReader("questionMaster.txt", true);
+            while ((temp = file.ReadLine()) != null)
             {
-                while ((temp = file.ReadLine()) != null)
+                splited_line = temp.Split(tab);
+                if (splited_line[0] == "1" && splited_line.Length == 9)
                 {
-                    splited_line = temp.Split(tab);
-                    if (splited_line[0] == "1" && splited_line.Length == 9)
+                    Questions.Add(new Question
                     {
-                        Questions.Add(new Question
-                        {
-                            value = splited_line[1],
-                            category = splited_line[3],
-                            question = splited_line[5].ToLower(),
-                            answer = splited_line[6].ToLower()
-                        });
-                    }
-                    else
-                        continue;
+                        value = splited_line[1],
+                        category = splited_line[3],
+                        question = splited_line[5].ToLower(),
+                        answer = splited_line[6].ToLower()
+                    });
                 }
-
-                file.Close();
+                else
+                    continue;
             }
+
+            file.Close();
         }
 
         public int Random_Generator(int count)
@@ -70,10 +67,15 @@ namespace JeopardyAssignment
                 Console.WriteLine("There are no more available questions in this category!");
             else
             {
-                Console.WriteLine("The question you picked from {0} category: \n {1}", random_question[index].category, random_question[index].question);
+                Console.WriteLine("-----------------------------------------------------");
+                Console.WriteLine("You picked {0} category:", random_question[index].category);
+                Console.WriteLine("-----------------------------------------------------");
+                Console.WriteLine("This question is worth {0} points", random_question[index].value);
+                Console.WriteLine("----------------------------------");
+                Console.WriteLine("Question: {0}", random_question[index].question);
+                Console.WriteLine("------------------------------------------------------------------");
                 random_question[index].accessibility_controller();
             }
-
             return index;
         }
 
@@ -105,16 +107,18 @@ namespace JeopardyAssignment
             random_question.RemoveAt(index);
         }
 
-        public string answer_checker(int index)
+        public string Answer_Checker(int index)
         {
             Console.WriteLine("Input what you think the question for this answer is: ");
+            //Console.WriteLine(random_question[index].answer); //TEMPORARLY SHOW ANSWER FOR TESTING!!
             string inputQuestion = Console.ReadLine();
 
             if (random_question[index].answer.Contains(inputQuestion))
             {
+                Console.WriteLine("----------------------------------");
                 Console.WriteLine(inputQuestion + " is correct!");
+                Console.WriteLine("----------------------------------");
                 return random_question[index].value;
-
             }
             else
             {
@@ -123,12 +127,12 @@ namespace JeopardyAssignment
                 return Convert.ToString(temp);
             }
 
-           
+
         }
 
 
-       //The following method picks 5 categories randomly fore every new game
-        public void Question_Sorter() 
+        //The following method picks 5 categories randomly fore every new game
+        public void Question_Sorter()
         {
             int round_count = 0;
             while (round_count < 5)
@@ -151,7 +155,6 @@ namespace JeopardyAssignment
                                 }
                             }
                         }
-
                     }
 
                     //Some categories contain less than 5 questions
@@ -193,12 +196,12 @@ namespace JeopardyAssignment
 
 
         //Följande metod är endast till test-körning
-      /*  public void Qprinter()
-        {
-            foreach (var x in random_question)
-            {
-                Console.WriteLine(x);
-            }
-        }*/
+        /*  public void Qprinter()
+          {
+              foreach (var x in random_question)
+              {
+                  Console.WriteLine(x);
+              }
+          }*/
     }
 };
