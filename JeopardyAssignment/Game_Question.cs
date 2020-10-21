@@ -16,24 +16,26 @@ namespace JeopardyAssignment
             string temp;
             string[] splited_line;
 
-            using StreamReader file = new StreamReader("questionMaster.txt", true);
-            while ((temp = file.ReadLine()) != null)
+            using (StreamReader file = new StreamReader("questionMaster.txt", true))
             {
-                splited_line = temp.Split(tab);
-                if (splited_line[0] == "1" && splited_line.Length == 9)
+                while ((temp = file.ReadLine()) != null)
                 {
-                    Questions.Add(new Question
+                    splited_line = temp.Split(tab);
+                    if (splited_line[0] == "1" && splited_line.Length == 9)
                     {
-                        value = splited_line[1],
-                        category = splited_line[3],
-                        question = splited_line[5],
-                        answer = splited_line[6].ToLower()
-                    });
+                        Questions.Add(new Question
+                        {
+                            value = splited_line[1],
+                            category = splited_line[3],
+                            question = splited_line[5],
+                            answer = splited_line[6].ToLower()
+                        });
+                    }
+                    else
+                        continue;
                 }
-                else
-                    continue;
+                file.Close();
             }
-            file.Close();
         }
 
         public int Random_Generator(int count)
@@ -110,7 +112,7 @@ namespace JeopardyAssignment
         {
             Console.WriteLine("Input what you think the question for this answer is: ");
             //Console.WriteLine(random_question[index].answer); //TEMPORARLY SHOW ANSWER FOR TESTING!!
-            string inputQuestion = Console.ReadLine();
+            string inputQuestion = Console.ReadLine().ToLower();
 
             if (random_question[index].answer.Contains(inputQuestion))
             {
