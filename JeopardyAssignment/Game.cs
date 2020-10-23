@@ -58,6 +58,7 @@ namespace JeopardyAssignment
                     else
                     {
                         Console.WriteLine("Sorry! You've lost...");
+                        Program.Main();
                     }
                 }
             }
