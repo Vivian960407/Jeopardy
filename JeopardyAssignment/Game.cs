@@ -11,6 +11,7 @@ namespace JeopardyAssignment
         {
 
             my_question.QuestionMaker();
+            my_question.Question_Sorter();
 
             while (true)
             {
@@ -44,25 +45,23 @@ namespace JeopardyAssignment
 
         public void Start_New_Game()
         {
-            my_player.ClearQuestionsCompleted();
-            my_question.Question_Remover();
-            my_question.Question_Sorter();
-            my_player.Points = 0;
             Console.Clear();
             for (int i = 1; i < 6; i++)
             {
+                Questionnaire();
                 if (i == 5)
                 {
                     if (my_player.Points > 0)
                     {
                         Last_Questionnaire();
+                        Program.Run();
                     }
                     else
                     {
                         Console.WriteLine("Sorry! You've lost...\n\n\n");
+                        Program.Run();
                     }
                 }
-                Questionnaire();
             }
 
         }
