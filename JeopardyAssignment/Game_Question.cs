@@ -34,6 +34,7 @@ namespace JeopardyAssignment
                     else
                         continue;
                 }
+
                 file.Close();
             }
         }
