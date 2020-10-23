@@ -118,7 +118,7 @@ namespace JeopardyAssignment
         public string Answer_Checker(int index)
         {
             Console.WriteLine("Input what you think the question for this answer is: ");
-            Console.WriteLine(random_question[index].answer); //TEMPORARLY SHOW ANSWER FOR TESTING!!
+            //Console.WriteLine(random_question[index].answer); //TEMPORARLY SHOW ANSWER FOR TESTING!!
             string inputQuestion = Console.ReadLine().ToLower();
 
             if (random_question[index].answer.Equals(inputQuestion))
