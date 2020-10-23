@@ -81,10 +81,5 @@ namespace JeopardyAssignment
             Console.Beep(523, 150);
             Console.Clear();
         }
-        public static void Song()
-        {
-           
-        }
     }
-
 }

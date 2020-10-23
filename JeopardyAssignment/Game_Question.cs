@@ -110,10 +110,10 @@ namespace JeopardyAssignment
         public string Answer_Checker(int index)
         {
             Console.WriteLine("Input what you think the question for this answer is: ");
-            Console.WriteLine(random_question[index].answer); //TEMPORARLY SHOW ANSWER FOR TESTING!!
+            //Console.WriteLine(random_question[index].answer); //TEMPORARLY SHOW ANSWER FOR TESTING!!
             string inputQuestion = Console.ReadLine().ToLower();
 
-            if (random_question[index].answer.Contains(inputQuestion))
+            if (random_question[index].answer.Equals(inputQuestion))
             {
                 Console.WriteLine("----------------------------------");
                 Console.WriteLine(inputQuestion + " is correct!");
@@ -195,15 +195,5 @@ namespace JeopardyAssignment
                 round_count++;
             }
         }
-
-
-        //Följande metod är endast till test-körning
-        /*  public void Qprinter()
-          {
-              foreach (var x in random_question)
-              {
-                  Console.WriteLine(x);
-              }
-          }*/
     }
 };

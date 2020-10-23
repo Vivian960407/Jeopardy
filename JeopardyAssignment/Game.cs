@@ -4,11 +4,6 @@ namespace JeopardyAssignment
 {
     class Game
     {
-
-        // Game logiken ska byggas här
-        // Metoder såsom Menu/Start eller poäng beräkningar ska kodas här
-        //UI hanteras här för det mesta 
-
         readonly Player my_player = new Player();
         readonly Game_Question my_question = new Game_Question();
 
@@ -90,7 +85,6 @@ namespace JeopardyAssignment
                     try
                     {
                         choice = Int32.Parse(Console.ReadLine());
-                        //DeletePreviousConsoleLine();
                     }
                     catch (FormatException)
                     {
@@ -153,7 +147,6 @@ namespace JeopardyAssignment
                     try
                     {
                         choice = Int32.Parse(Console.ReadLine());
-                        //DeletePreviousConsoleLine();
                     }
                     catch (FormatException)
                     {
@@ -183,24 +176,10 @@ namespace JeopardyAssignment
         public static int QuestionsCompleted { get; set; }
         public int Points { get; set; }
 
-        //public int Bet { get; set; }
-
         public void AddBet(int bet)
         {
-            //Bet += bet;
             Points -= bet;
         }
-
-        /*
-        public void ClearPoints()
-        {
-            Points = 0;
-        }
-        public void ClearBet()
-        {
-            Bet = 0;
-        }
-        */
         public void ClearQuestionsCompleted()
         {
             QuestionsCompleted = 0;

@@ -18,10 +18,5 @@
         {
             accessibility = Q.played;
         }
-
-       /* public override string ToString()
-        {
-            return string.Format("Category: {0} \n Value: {1} \n Question: {2} \n Answer: {3} \n ", category, value, question, answer);
-        }*/
     }
 }
