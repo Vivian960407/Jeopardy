@@ -58,20 +58,20 @@ namespace JeopardyAssignment
         {
             int index = -1;
             for (int i = 0; i < random_question.Count; i++)
+            {
+                if (random_question[i].category != category)
+                    continue;
+                else
                 {
-                    if (random_question[i].category != category)
+                    if (random_question[i].accessibility == Q.played)
                         continue;
                     else
                     {
-                        if (random_question[i].accessibility == Q.played)
-                            continue;
-                        else
-                        {
-                            index = i;
-                            break;
-                        }
+                        index = i;
+                        break;
                     }
                 }
+            }
 
             if (index == -1)
             {

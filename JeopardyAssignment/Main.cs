@@ -1,8 +1,4 @@
-﻿using System.Text;
-﻿using System.Security.Cryptography.X509Certificates;
-
-
-namespace JeopardyAssignment
+﻿namespace JeopardyAssignment
 {
     internal class Program
     {

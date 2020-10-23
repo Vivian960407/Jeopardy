@@ -23,7 +23,7 @@ namespace JeopardyAssignment
                 }
                 catch (FormatException)
                 {
-                    
+
                 }
 
                 switch (menuInput)
@@ -107,7 +107,7 @@ namespace JeopardyAssignment
             }
             string played_value = my_question.Answer_Checker(index);
             my_player.WinQuestion(played_value);
-            
+
             my_player.ShowStatistics();
         }
 
@@ -125,7 +125,7 @@ namespace JeopardyAssignment
                     bet = Convert.ToInt32(Console.ReadLine());
                 }
                 catch (FormatException)
-                { 
+                {
                 }
                 if (bet > my_player.Points || bet < 1)
                 {
@@ -135,7 +135,7 @@ namespace JeopardyAssignment
                 else
                     break;
             }
-            
+
             my_player.AddBet(bet);
             int choice = 0;
             int index;
