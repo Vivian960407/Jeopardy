@@ -50,23 +50,26 @@ namespace JeopardyAssignment
         {
             int index = -1;
             for (int i = 0; i < random_question.Count; i++)
-            {
-                if (random_question[i].category != category)
-                    continue;
-                else
                 {
-                    if (random_question[i].accessibility == Q.played)
+                    if (random_question[i].category != category)
                         continue;
                     else
                     {
-                        index = i;
-                        break;
+                        if (random_question[i].accessibility == Q.played)
+                            continue;
+                        else
+                        {
+                            index = i;
+                            break;
+                        }
                     }
                 }
-            }
 
             if (index == -1)
+            {
                 Console.WriteLine("There are no more available questions in this category!");
+
+            }
             else
             {
                 Console.WriteLine("-----------------------------------------------------");
@@ -103,11 +106,6 @@ namespace JeopardyAssignment
             }
         }
 
-        //Probably will get removed
-        public void Question_Remover(int index)
-        {
-            random_question.RemoveAt(index);
-        }
 
         public string Answer_Checker(int index)
         {
