@@ -17,14 +17,51 @@ namespace JeopardyAssignment
             my_question.QuestionMaker();
             my_question.Question_Sorter();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 Questionnaire();
+                if (i == 5)
+                {
+                    Last_Questionnaire();
+                }
             }
-            for (int i = 5; i < 6; i++)
+            //for (int i = 5; i < 6; i++)
+            //{
+            //    Last_Questionnaire();
+            //}
+        }
+        public void Menu_Switch()
+        {
+            Console.WriteLine("Menu. Choose a number corresponding what you want to do from this list:");
+            Console.WriteLine("1. Start a new game\n2. Exit game");
+
+            int menuInput = Convert.ToInt32(Console.ReadLine());
+
+            switch (menuInput)
             {
-                Last_Questionnaire();
+                case 1:
+                    Start_New_Game();
+                    break;
+                case 2:
+                    Exit_Game();
+                    break;
+                default:
+                    Console.WriteLine("Can only choose 1 or 2");
+                    Menu_Switch();
+                    break;
             }
+        }
+        public void Start_New_Game()
+        {
+            Console.Clear();
+            var game = new Game();
+            game.Start();
+        }
+        public void Exit_Game()
+        {
+            Console.WriteLine("Thank you for playing!");
+            Console.WriteLine("Press any key to close application");
+            Environment.Exit(0);
         }
 
         public void Questionnaire()
@@ -177,43 +214,6 @@ namespace JeopardyAssignment
         {
             Console.WriteLine("Your points: {0}", Points);
             Console.WriteLine("Questions answered {0} of 6", QuestionsCompleted);
-        }
-    }
-    public class Menu
-    {
-        
-        public void Menu_Switch()
-        {
-            Console.WriteLine("Menu. Choose a number corresponding what you want to do from this list:");
-            Console.WriteLine("1. Start a new game\n2. Exit game");
-
-            int menuInput = Convert.ToInt32(Console.ReadLine());
-
-            switch (menuInput)
-            {
-                case 1:
-                    Start_New_Game();
-                    break;
-                case 2:
-                    Exit_Game();
-                    break;
-                default:
-                    Console.WriteLine("Can only choose 1 or 2");
-                    Menu_Switch();
-                    break;
-            }
-        }
-        public void Start_New_Game()
-        {
-            Console.Clear();
-            var game = new Game();
-            game.Start();
-        }
-        public void Exit_Game()
-        {
-            Console.WriteLine("Thank you for playing!");
-            Console.WriteLine("Press any key to close application");
-            Environment.Exit(0);
         }
     }
 }

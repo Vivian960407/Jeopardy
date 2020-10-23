@@ -8,7 +8,7 @@
 
             for (int i = 0; i < 1000; i++)
             {
-                var menu = new Menu();
+                var menu = new Game();
                 menu.Menu_Switch();
             }
         }
