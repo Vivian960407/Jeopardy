@@ -4,7 +4,8 @@
     {
         public static void Main()
         {
-            //WelcomeMessage.Welcome();
+            WelcomeMessage.Welcome();
+            WelcomeMessage.Song();
             var game = new Game();
             game.Start();
 
