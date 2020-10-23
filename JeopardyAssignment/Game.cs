@@ -51,7 +51,6 @@ namespace JeopardyAssignment
             Console.Clear();
             for (int i = 1; i < 6; i++)
             {
-                Questionnaire();
                 if (i == 5)
                 {
                     if (my_player.Points > 0)
@@ -60,9 +59,10 @@ namespace JeopardyAssignment
                     }
                     else
                     {
-                        Console.WriteLine("Sorry! You've lost...");
+                        Console.WriteLine("Sorry! You've lost...\n\n\n");
                     }
                 }
+                Questionnaire();
             }
 
         }

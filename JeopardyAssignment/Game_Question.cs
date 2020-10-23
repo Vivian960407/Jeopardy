@@ -187,15 +187,6 @@ namespace JeopardyAssignment
                             }
                         }
 
-                        //remove the items from the origin list
-                        for (int i = 0; i < Questions.Count; i++)
-                        {
-                            if (Questions[i].category != question[0].category)
-                                continue;
-                            else
-                                Questions.RemoveAt(i);
-                        }
-
                         random_question.AddRange(question);
                         break;
                     }
