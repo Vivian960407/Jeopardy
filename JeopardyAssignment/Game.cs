@@ -58,7 +58,7 @@ namespace JeopardyAssignment
                     else
                     {
                         Console.WriteLine("Sorry! You've lost...");
-                        Program.Main();
+                        Program.NewGame();
                     }
                 }
             }
@@ -168,6 +168,7 @@ namespace JeopardyAssignment
             my_question.Answer_Checker(index);
             my_player.WinLastQuestion(bet);
             my_player.ShowEndResult();
+            Program.NewGame();
         }
     }
 
