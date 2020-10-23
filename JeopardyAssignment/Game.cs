@@ -44,6 +44,7 @@ namespace JeopardyAssignment
 
         public void Start_New_Game()
         {
+            my_player.ClearQuestionsCompleted();
             my_question.Question_Remover();
             my_question.Question_Sorter();
             my_player.Points = 0;
