@@ -1,4 +1,6 @@
-﻿namespace JeopardyAssignment
+﻿using System.Text;
+
+namespace JeopardyAssignment
 {
     internal class Program
     {
@@ -6,7 +8,7 @@
         {
             WelcomeMessage.Welcome();
             var game = new Game();
-            game.Start();
+            game.Menu_Switch();
         }
     }
 }

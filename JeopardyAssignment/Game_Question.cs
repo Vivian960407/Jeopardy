@@ -39,6 +39,14 @@ namespace JeopardyAssignment
             }
         }
 
+        public void Question_Remover()
+        {
+            for (int index = 0; index < random_question.Count; index++)
+            {
+                random_question.RemoveAt(index);
+            }
+        }
+
         public int Random_Generator(int count)
         {
             Random rand = new Random();

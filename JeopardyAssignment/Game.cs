@@ -7,14 +7,11 @@ namespace JeopardyAssignment
         readonly Player my_player = new Player();
         readonly Game_Question my_question = new Game_Question();
 
-        public void Start()
-        {
-            my_question.QuestionMaker();
-            my_question.Question_Sorter();
-            Menu_Switch();
-        }
         public void Menu_Switch()
         {
+
+            my_question.QuestionMaker();
+
             while (true)
             {
                 Console.WriteLine("Menu. Choose a number corresponding what you want to do from this list:");
@@ -47,6 +44,9 @@ namespace JeopardyAssignment
 
         public void Start_New_Game()
         {
+            my_question.Question_Remover();
+            my_question.Question_Sorter();
+            my_player.Points = 0;
             Console.Clear();
             for (int i = 1; i < 6; i++)
             {
@@ -54,11 +54,12 @@ namespace JeopardyAssignment
                 if (i == 5)
                 {
                     if (my_player.Points > 0)
+                    {
                         Last_Questionnaire();
+                    }
                     else
                     {
                         Console.WriteLine("Sorry! You've lost...");
-                        Program.Main();
                     }
                 }
             }
@@ -197,7 +198,7 @@ namespace JeopardyAssignment
         }
         public void ShowEndResult()
         {
-            Console.WriteLine("Thanks for playing, yor final score is: {0}", Points);
+            Console.WriteLine("Thanks for playing, yor final score is: {0}\n\n\n", Points);
             ClearQuestionsCompleted();
         }
         public void ShowStatistics()
